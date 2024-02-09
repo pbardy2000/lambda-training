@@ -1,0 +1,9 @@
+-- Create CARS Table
+CREATE TABLE CARS
+(
+    ID                  INT AUTO_INCREMENT PRIMARY KEY,
+    REG_NUMBER          VARCHAR(255) NOT NULL,
+    YEAR_OF_MANUFACTURE INT,
+    COLOUR              VARCHAR(50),
+    IS_TAXED            BOOLEAN
+);

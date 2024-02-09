@@ -1,0 +1,16 @@
+version: '3.9'
+
+services:
+  cars-mysql-db:
+    platform: linux/x86_64
+    image: mysql:8.0
+    environment:
+      MYSQL_DATABASE: car-garage
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
+      MYSQL_USER: mechanic123
+      MYSQL_PASSWORD: Pa55word1
+    volumes:
+      - './database-scripts/01-table-creation.sql:/docker-entrypoint-initdb.d/01-table-creation.sql'
+      - './database-scripts/02-seed-tables.sql:/docker-entrypoint-initdb.d/02-seed-tables.sql'
+    ports:
+      - '3306:3306'

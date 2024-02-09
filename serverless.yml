@@ -1,0 +1,33 @@
+service: appdev-ts-lambda-training
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+  stage: ${opt:stage, 'dev'}
+
+package:
+  individually: true
+
+functions:
+  getCar:
+    handler: src/functions/getCar/framework/handler.handler
+    events:
+      - http:
+          path: 'cars/{value?}'
+          method: get
+  postCar:
+    handler: src/functions/postCar/framework/handler.handler
+    events:
+      - http:
+          path: 'cars'
+          method: post
+custom:
+  stages:
+    - dev
+  webpack:
+    webpackConfig: 'webpack-sls-offline.config.js'
+
+plugins:
+  - serverless-dotenv-plugin
+  - serverless-webpack
+  - serverless-offline
