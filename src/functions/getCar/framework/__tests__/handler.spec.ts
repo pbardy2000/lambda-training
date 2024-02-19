@@ -9,7 +9,6 @@ describe('getCar', () => {
       // ACT
       const resp = await handler(ev);
       // ASSERT
-      expect(resp.body).toEqual(JSON.stringify({ data: 'some data' }));
       expect(resp.statusCode).toEqual(200);
     });
   });

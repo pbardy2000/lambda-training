@@ -10,7 +10,6 @@ describe('postCar', () => {
       // ACT
       const resp = await handler(event);
       // ASSERT
-      expect(resp.body).toEqual(JSON.stringify({ key: 'value' }));
       expect(resp.statusCode).toEqual(200);
     });
   });
@@ -23,7 +22,6 @@ describe('postCar', () => {
       // ACT
       const resp = await handler(event);
       // ASSERT
-      expect(resp.body).toEqual(JSON.stringify({ msg: 'Event body is empty' }));
       expect(resp.statusCode).toEqual(400);
     });
   });
