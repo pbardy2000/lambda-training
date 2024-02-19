@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "outDir": "./build",
-    "target": "es2019",
+    "target": "ES2022",
     "module": "commonjs",
     "allowJs": true,
     "strict": true,
