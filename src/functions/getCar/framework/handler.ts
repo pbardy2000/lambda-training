@@ -4,8 +4,6 @@ import { bootstrapLogging, error } from '@dvsa/mes-microservice-common/applicati
 import { APIGatewayProxyEvent } from 'aws-lambda';
 import { getCar } from '../application/service/get-car';
 
-// Remove when logic implemented
-// eslint-disable-next-line @typescript-eslint/require-await
 export async function handler(event: APIGatewayProxyEvent) {
   try {
     bootstrapLogging('get-car', event);
@@ -16,13 +14,17 @@ export async function handler(event: APIGatewayProxyEvent) {
     }
 
     const id = parseInt(String(event.pathParameters.value), 10);
-    const [results] = await getCar(id);
+    const cars = await getCar(id);
 
-    if (Array.isArray(results) && results.length > 0) {
-      return createResponse(results[0]);
+    if (cars.length === 0) {
+      return createResponse({ msg: 'No results found' }, HttpStatus.NOT_FOUND);
     }
 
-    return createResponse({ msg: 'No results found' }, HttpStatus.NOT_FOUND);
+    if (cars.length > 1) {
+      return createResponse({ msg: 'Too many results found' }, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    return createResponse(cars[0], HttpStatus.OK);
   } catch (err: unknown) {
     error((err instanceof Error) ? err.message : `Unknown error: ${err as string}`);
 
