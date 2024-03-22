@@ -21,6 +21,24 @@ functions:
       - http:
           path: 'cars'
           method: post
+  patchCar:
+    handler: src/functions/patchCar/framework/handler.handler
+    events:
+      - http:
+          path: 'cars/{value?}'
+          method: patch
+  updateCar:
+    handler: src/functions/updateCar/framework/handler.handler
+    events:
+      - http:
+          path: 'cars/{value?}'
+          method: put
+  deleteCar:
+    handler: src/functions/deleteCar/framework/handler.handler
+    events:
+      - http:
+          path: 'cars/{value?}'
+          method: delete
 custom:
   stages:
     - dev
