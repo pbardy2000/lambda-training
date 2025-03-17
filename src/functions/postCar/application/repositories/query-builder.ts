@@ -1,5 +1,5 @@
-import { format } from 'mysql2';
-import { CarModel } from '../../../getCar/application/validators/validate-car';
+import { format } from "mysql2";
+import type { CarModel } from "../../../getCar/application/validators/validate-car";
 
 const query = `
   INSERT INTO CARS (REG_NUMBER, YEAR_OF_MANUFACTURE, COLOUR, IS_TAXED)
@@ -7,7 +7,10 @@ const query = `
 `;
 
 export function buildQuery({
-  regNumber, yearOfManufacturer, color, isTaxed,
+	regNumber,
+	yearOfManufacture,
+	color,
+	isTaxed,
 }: CarModel) {
-  return format(query, [regNumber, yearOfManufacturer, color, isTaxed]);
+	return format(query, [regNumber, yearOfManufacture, color, isTaxed]);
 }

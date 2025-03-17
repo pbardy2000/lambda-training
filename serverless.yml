@@ -15,6 +15,12 @@ functions:
       - http:
           path: 'cars/{value?}'
           method: get
+  getPokemonByName:
+    handler: src/functions/getPokemonByName/framework/handler.handler
+    events:
+      - http:
+          path: 'pokemon/{name?}'
+          method: get
   postCar:
     handler: src/functions/postCar/framework/handler.handler
     events:
